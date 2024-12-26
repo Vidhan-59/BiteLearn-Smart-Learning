@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-6">Quiz Questions</h1>
+        <div id="quiz-container"></div>
+    </div>
+
+    <script>
+        const jsonData = [{'question': 'The specific values of each pixel are very different from one what to the next?', 'options': ['Particular Image', 'image', 'Different Image', 'Specific Image'], 'answer': 'image'}, {'question': 'The brains can recognise trees even though the specific values of each pixel is very different from one image to the next?', 'options': ['Same Values', 'Different Values', 'values', 'Different Value'], 'answer': 'values'}];
+
+
+        function createQuiz(jsonData) {
+            const quizContainer = document.getElementById('quiz-container');
+            jsonData.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6';
+
+                const questionStem = document.createElement('h2');
+                questionStem.className = 'text-lg font-semibold mb-2';
+                questionStem.textContent = `${index + 1}. ${question.question}`;
+                questionDiv.appendChild(questionStem);
+
+                question.options.forEach((option, optionIndex) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'mb-1';
+
+                    const optionLabel = document.createElement('label');
+                    optionLabel.className = 'inline-flex items-center';
+
+                    const optionInput = document.createElement('input');
+                    optionInput.type = 'radio';
+                    optionInput.name = `question-${index}`;
+                    optionInput.value = option;
+                    optionInput.className = 'form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out';
+
+                    const optionText = document.createElement('span');
+                    optionText.className = 'ml-2';
+                    optionText.textContent = option;
+
+                    optionLabel.appendChild(optionInput);
+                    optionLabel.appendChild(optionText);
+                    optionDiv.appendChild(optionLabel);
+
+                    questionDiv.appendChild(optionDiv);
+                });
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Initialize quiz
+        createQuiz(jsonData);
+    </script>
+
+</body>
+</html>
