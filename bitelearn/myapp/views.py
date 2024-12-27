@@ -47,7 +47,8 @@ from .text_processing_utils import generate_questions
 class YouTubeRecommendationView(APIView):
 
     permission_classes = [IsAuthenticatedUser]
-    api_key = "AIzaSyC18kWKuwhbLbwV7JIZOZMdVBY02i4-vr0"
+    # api_key = "AIzaSyC18kWKuwhbLbwV7JIZOZMdVBY02i4-vr0"
+    api_key = ""
 
     def search_videos(self, topic):
         youtube = build("youtube", "v3", developerKey=self.api_key)
